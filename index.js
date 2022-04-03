@@ -1,5 +1,6 @@
 import express from "express";
 import { productsRouter } from "./routes/products.js";
+import { usersRouter } from "./routes/users.js";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -32,6 +33,6 @@ app.get("/", function (request, response) {
 });
 
 app.use("/products", productsRouter);
-// app.use("/users", usersRouter);
+app.use("/users", usersRouter);
 
 app.listen(PORT, () => console.log("Server is started in " + PORT));

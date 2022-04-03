@@ -1,5 +1,7 @@
 import express from "express";
 
+import { auth } from "../middleware/auth.js";
+
 import { addProducts, getAllProducts } from "../helper.js";
 
 const router = express.Router();
@@ -17,10 +19,9 @@ router.get("/", async function (request, response) {
   }
 });
 
-router.post("/", async function (request, response) {
-  //   const result = await getAllMovies();
-  //   console.log("result", result);
+router.post("/", auth, async function (request, response) {
   const newProduct = request.body;
+  // console.log(request.body);
   const result = await addProducts(newProduct);
   response.send(result);
 });
